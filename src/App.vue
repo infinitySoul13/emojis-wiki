@@ -1,29 +1,29 @@
 <template>
   <div id="app">
 <!--    <div class="container">-->
-<!--        <div class="row">-->
-<!--            <button class="btn btn-primary" @click="local='en'">-->
-<!--                en-->
-<!--            </button>-->
-<!--            <button class="btn btn-primary" @click="local='de'">-->
-<!--                de-->
-<!--            </button>-->
-<!--            <button class="btn btn-primary" @click="local='es'">-->
-<!--                es-->
-<!--            </button>-->
-<!--            <button class="btn btn-primary" @click="local='fr'">-->
-<!--                fr-->
-<!--            </button>-->
-<!--            <button class="btn btn-primary" @click="local='it'">-->
-<!--                it-->
-<!--            </button>-->
-<!--            <button class="btn btn-primary" @click="local='pt'">-->
-<!--                pt-->
-<!--            </button>-->
-<!--            <button class="btn btn-primary" @click="local='ru'">-->
-<!--                ru-->
-<!--            </button>-->
-<!--        </div>-->
+        <div class="row w-100 mx-auto mb-3">
+            <button class="btn btn-primary m-1" style="width:50px" @click="local='en'">
+                en
+            </button>
+            <button class="btn btn-primary m-1" style="width:50px" @click="local='de'">
+                de
+            </button>
+            <button class="btn btn-primary m-1" style="width:50px" @click="local='es'">
+                es
+            </button>
+            <button class="btn btn-primary m-1" style="width:50px" @click="local='fr'">
+                fr
+            </button>
+            <button class="btn btn-primary m-1" style="width:50px" @click="local='it'">
+                it
+            </button>
+            <button class="btn btn-primary m-1" style="width:50px" @click="local='pt'">
+                pt
+            </button>
+            <button class="btn btn-primary m-1" style="width:50px" @click="local='ru'">
+                ru
+            </button>
+        </div>
       <EmojisWikiPicker :local="local"></EmojisWikiPicker>
     </div>
 <!--  </div>-->

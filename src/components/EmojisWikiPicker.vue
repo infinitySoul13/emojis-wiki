@@ -12,7 +12,7 @@
                           placeholder="Select emoji and copy"
                           v-model="text"
                           rows="3"
-                          style="font-size: 14px"
+                          style="font-size: 24px"
                 ></textarea>
                 <div style="width: 24px; height: 24px; border-radius: 50%;"
                      class="tw-absolute tw-bg-grey-20 p-1 tw-right-0 sm:tw-right-0 md:tw-right-2 tw--top-0.5 tw-cursor-pointer"
@@ -217,6 +217,9 @@
             let data = require(`@/assets/emojis_data/${this.local}/emojis.json`);
             this.emojis = data;
             this.categories = data.categories;
+            this.search_text = data.search;
+            this.copy_btn = data.copy_btn;
+            // this.copy_text = data.copy_text;
             // this.categories = {...this.categories.map(cat => this[`$${cat}`] = [])}
             this.categories.forEach(category => {
                 const index = this.emojis.categories.findIndex(cat => cat === category);
@@ -246,7 +249,7 @@
             changeLocal() {
                 var data = require(`@/assets/emojis_data/${this.local}/emojis.json`);
                 this.emojis = data;
-                this.search_text = data.search_text;
+                this.search_text = data.search;
                 this.copy_btn = data.copy_btn;
                 // this.copy_text = data.copy_text;
                 this.categories = data.categories;
