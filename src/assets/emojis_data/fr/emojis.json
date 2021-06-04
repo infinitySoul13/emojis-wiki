@@ -11122,5 +11122,8 @@
       "tags": ["symbole de ronflement", "icône de sommeil", "signe de sommeil", "symbole de sommeil", "dormir"],
       "category" : 0
     }
-  ]
+  ],
+  "search": "Сhercher",
+  "copy_btn": "Copier",
+  "copy_text": ""
 }

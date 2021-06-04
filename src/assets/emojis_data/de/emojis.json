@@ -11120,5 +11120,9 @@
     "tags": ["Schnarch-Symbol", "Schlafsymbol", "Schlafzeichen", "Schlafsymbol", "schlafen"],
     "category": 0
   }
-]
+],
+  "search": "Suche",
+  "copy_btn": "Kopiert",
+  "copy_text": ""
+
 }

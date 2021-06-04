@@ -1,23 +1,41 @@
 <template>
   <div id="app">
-
-<!--    <img alt="Vue logo" src="./assets/logo.png">-->
-    <!--  <HelloWorld msg="Welcome to Your Vue.js App"/>-->
-    <div class="container">
+<!--    <div class="container">-->
+<!--        <div class="row">-->
+<!--            <button class="btn btn-primary" @click="local='en'">-->
+<!--                en-->
+<!--            </button>-->
+<!--            <button class="btn btn-primary" @click="local='de'">-->
+<!--                de-->
+<!--            </button>-->
+<!--            <button class="btn btn-primary" @click="local='es'">-->
+<!--                es-->
+<!--            </button>-->
+<!--            <button class="btn btn-primary" @click="local='fr'">-->
+<!--                fr-->
+<!--            </button>-->
+<!--            <button class="btn btn-primary" @click="local='it'">-->
+<!--                it-->
+<!--            </button>-->
+<!--            <button class="btn btn-primary" @click="local='pt'">-->
+<!--                pt-->
+<!--            </button>-->
+<!--            <button class="btn btn-primary" @click="local='ru'">-->
+<!--                ru-->
+<!--            </button>-->
+<!--        </div>-->
       <EmojisWikiPicker :local="local"></EmojisWikiPicker>
     </div>
-  </div>
+<!--  </div>-->
 
 </template>
 
 <script>
-  // import HelloWorld from './components/HelloWorld.vue'
   import EmojisWikiPicker from './components/EmojisWikiPicker.vue'
 
   export default {
     name: 'App',
     components: {
-      // HelloWorld,
       EmojisWikiPicker
     },
     data () {
@@ -30,7 +48,7 @@
 
 <style>
   #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
+    font-family: Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;

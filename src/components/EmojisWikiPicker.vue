@@ -1,5 +1,11 @@
 <template>
     <div class="emojis-wiki">
+        <div id="snack" class="snackbar-container snackbar-pos top-center" :class="` ${snack ? 'show' : 'hide'}`">
+            <p style="margin: 0px; padding: 0px; font-size: 14px; font-weight: 700; line-height: 1.6em;">{{copy_text}}</p>
+            <button class="action" style="color: rgb(66, 121, 81);" @click="closeSnackbar">
+                <img src="\icons\close_2.svg" alt="Dismiss" class="copy-close-btn">
+            </button>
+        </div>
         <div class="row w-100 m-auto align-items-center justify-content-center">
             <div class="col-12 tw-relative px-0 px-sm-0 px-md-2">
                 <textarea class="w-100 border-0 tw-outline-none tw-pr-5"
@@ -27,15 +33,11 @@
                             <div v-for="(emj, index) in 6" :key="emj" @click="setVariation(index - 1)"
                                  class=" tw-relative tw-flex tw-w-10 tw-h-full p-2 tw-transition tw-pointer-events-auto tw-duration-200 tw-cursor-pointer emojis-wiki-emojipicker__pickvariation"
                             >
-<!--                                    <img :src="`https://en-zo.dev/vue-discord-emojipicker/variations/variation_${emj - 1}.svg`" @click="setVariation(emj - 1)"/>-->
-<!--                                    <div style="width: 12px; height: 12px; border-radius: 50%;" :class="`tw-bg-skin-${emj - 1}`"></div>-->
-
-                                    <div style="width: 12px; height: 12px; border-radius: 50%; top: 37%; left: 37%;"
-                                         :class="`tw-absolute tw-hover:tw-ring tw-hover:tw-ring-3 tw-hover:tw-border-primary-50 tw-bg-skin-${emj - 1} ${ variation==(index - 1) ? 'tw-ring tw-ring-3 tw-ring-grey-0' : ''}`"
-                                         @click="setVariation(index - 1)"
-                                    >
-                                    </div>
-
+                                <div style="width: 12px; height: 12px; border-radius: 50%; top: 37%; left: 37%;"
+                                     :class="`tw-absolute tw-hover:tw-ring tw-hover:tw-ring-3 tw-hover:tw-border-primary-50 tw-bg-skin-${emj - 1} ${ variation==(index - 1) ? 'tw-ring tw-ring-3 tw-ring-grey-0' : ''}`"
+                                     @click="setVariation(index - 1)"
+                                >
+                                </div>
                             </div>
                     </div>
 <!--                        @mouseenter="hovered = true" @mouseleave="hovered = false"-->
@@ -51,7 +53,7 @@
                 >
                     {{selected.name}}
                 </p>
-                <button class="btn btn-primary" style="float: right; width: 117px; height: 44px" @click="copyToBuffer">Copy</button>
+                <button class="btn btn-primary btn-copy" style="float: right; width: 117px; height: 44px" @click="copyToBuffer">{{copy_btn}}</button>
             </div>
         </div>
         <div class="row w-100 m-auto align-items-center justify-content-center">
@@ -63,13 +65,12 @@
                               @click="search_tab = true"
                               style="font-size: 12px"
                         >
-                            Search
+                            {{search_text}}
                         </span>
-
                         <div class="tw-overflow-x-auto tw-flex emojis-wiki-scrollbar-hidden w-100 m-auto">
                             <span v-for="(category, c) in categories"
                                   :key="c" :class="{ 'tw-text-primary-100 tw-border-b-2 tw-border-primary-50': c === active&&!search_tab }"
-                                  class="tw-flex tw-flex-none px-2 tw-py-3.5 tw-transition tw-duration-200 z-1"
+                                  class="tw-flex tw-flex-none px-2 tw-py-3.5 tw-transition tw-duration-300 z-1"
                                   style="font-size: 12px"
                                   :id="'category'+c"
                                   @click="goToCategory(c)"
@@ -82,17 +83,17 @@
                     <div class="tw-h-full tw-w-full tw-flex tw-flex-col tw-overflow-y-hidden tw-bg-grey-20 pb-2" style="height: calc(400px - 44px); border-radius: 8px;">
                         <div id="emojis-wiki" class="tw-overflow-auto tw-relative tw-h-full tw-w-full pb-2">
                             <div v-if="search_tab">
-                                <div class="container">
+                                <div class="px-3 py-2">
                                     <div class="row mt-2 w-100 m-auto tw-relative">
                                         <input v-model="search"
                                                @input="runSearch"
                                                class="w-100 tw-outline-none tw-text-sm py-2 px-3 tw-rounded w-ring tw-ring-4 tw-ring-grey-10"
-                                               placeholder="e.g. earth day, apple or orange"
+                                               :placeholder="search_text"
                                         />
                                         <div style="width: 24px; height: 24px; border-radius: 50%;"
                                              class="tw-absolute tw-bg-grey-20 p-1 tw-right-1.5 tw-top-1.5 tw-cursor-pointer"
                                              @click="search=''"
-                                             v-if="search.trim() != ''"
+                                             v-if="search.trim() !== ''"
                                         >
                                             <img class="tw-w-4 p-1" src="\icons\cancel.svg" alt="">
                                         </div>
@@ -103,21 +104,21 @@
                                             Start writing the name of the emoji
                                         </p>
                                     </div>
-
-                                    <div class="pt-3 pb-2 tw-flex tw-flex-items tw-center tw-justify-start tw-flex-wrap tw-overflow-x-hidden">
-                                        <div v-for="(result, e) in search_results"
-                                             :key="`s_emoji_${e}`"
-                                             class="tw-text-2xl tw-overflow-hidden tw-cursor-pointer tw-transition tw-duration-200 tw-ease-in-out tw-rounded-md tw-w-8 tw-h-full tw-flex-full tw-items-center tw-justify-center"
-                                             @mouseenter="selected = { ...result.item }"
-                                             @click="chooseEmoji(result.item)"
-                                        >
-                                            <template v-if="result.item.variations && variation >= 0 && result.item.variations[variation]">
-                                                {{ result.item.variations[variation] }}
-                                            </template>
-                                            <template v-else>
-                                                {{ result.item.emoji }}
-                                            </template>
-                                        </div>
+                                </div>
+                                <div class="px-3 mt-2 tw-grid tw-grid-cols-8 md:tw-grid-cols-12 gap-2 tw-center tw-justify-start tw-overflow-x-hidden">
+                                    <div v-for="(result, e) in search_results"
+                                         :key="`s_emoji_${e}`"
+                                         class="tw-text-2xl tw-overflow-hidden tw-cursor-pointer tw-transition tw-duration-200 tw-hover:bg-grey-200 tw-hover:bg-opacity-50 tw-rounded-md tw-w-8 sm:tw-w-full tw-h-full tw-items-center tw-justify-center"
+                                         @mouseenter="selected = { ...result.item }"
+                                         @mouseleave="selected = ''"
+                                         @click="chooseEmoji(result.item)"
+                                    >
+                                        <template v-if="result.item.variations && variation >= 0 && result.item.variations[variation]">
+                                            {{ result.item.variations[variation] }}
+                                        </template>
+                                        <template v-else>
+                                            {{ result.item.emoji }}
+                                        </template>
                                     </div>
                                 </div>
                             </div>
@@ -133,11 +134,13 @@
                                         >
                                             {{ category }}
                                         </div>
-                                        <div class="px-3 tw-flex tw-flex-items tw-center tw-justify-start tw-flex-wrap tw-overflow-x-hidden">
+                                        <div class="px-3 tw-grid tw-grid-cols-8 md:tw-grid-cols-12 gap-2 tw-center tw-justify-start tw-overflow-x-hidden">
+<!--                                            tw-flex tw-flex-items tw-flex-wrap sm:-->
                                             <div v-for="(emoji, e) in $data[category]"
                                                  :key="`emoji_${e}`"
-                                                 class="tw-text-2xl tw-overflow-hidden tw-cursor-pointer tw-transition tw-duration-200 tw-hover:bg-grey-200 tw-hover:bg-opacity-50 tw-rounded-md tw-w-8 tw-h-full tw-flex-full tw-items-center tw-justify-center"
+                                                 class="tw-text-2xl tw-overflow-hidden tw-cursor-pointer tw-transition tw-duration-200 tw-hover:bg-grey-200 tw-hover:bg-opacity-50 tw-rounded-md tw-w-8 sm:tw-w-full tw-h-full tw-items-center tw-justify-center"
                                                  @mouseenter="selected = { ...emoji }"
+                                                 @mouseleave="selected = ''"
                                                  @click="chooseEmoji(emoji)"
                                             >
                                                 <template v-if="emoji.variations && variation >= 0 && emoji.variations[variation]">
@@ -168,7 +171,6 @@
 
 <script>
     import clickOutside from '@/directives/click-outside.js'
-    // import emojis from '@/assets/emojis.json'
     import _ from 'lodash';
     export default {
         name: "EmojisWikiPicker",
@@ -203,11 +205,16 @@
                         'tags'
                     ]
                 },
-                search_results: []
+                search_results: [],
+                snack:false,
+                timeout:null,
+                search_text:'Search',
+                copy_btn:'Copy',
+                copy_text:'Copied'
             }
         },
         created () {
-            var data = require(`@/assets/emojis_data/${this.local}/emojis.json`);
+            let data = require(`@/assets/emojis_data/${this.local}/emojis.json`);
             this.emojis = data;
             this.categories = data.categories;
             // this.categories = {...this.categories.map(cat => this[`$${cat}`] = [])}
@@ -239,6 +246,9 @@
             changeLocal() {
                 var data = require(`@/assets/emojis_data/${this.local}/emojis.json`);
                 this.emojis = data;
+                this.search_text = data.search_text;
+                this.copy_btn = data.copy_btn;
+                // this.copy_text = data.copy_text;
                 this.categories = data.categories;
                 this.categories.forEach(category => {
                     const index = this.emojis.categories.findIndex(cat => cat === category);
@@ -248,11 +258,35 @@
                 })
             },
             copyToBuffer() {
-                this.$copyText(this.text).then(function (e) {
-                    console.log(e)
-                }, function (e) {
-                    console.log(e)
-                })
+                if(this.text.trim() !==''){
+                    let t = this;
+                    const emojis_snack = document.getElementById('snack');
+                    this.$copyText(this.text).then(function (e) {
+                        if( t.snack === true) {
+                            emojis_snack.style.visibility = 'hidden';
+                            t.closeSnackbar();
+                            setTimeout(() => {
+                                emojis_snack.style.visibility = 'visible';
+                                t.snack = true;
+                            }, 150)
+                        }
+                        else {
+                            t.snack = true;
+                        }
+
+                        t.timeout = setTimeout(() => {
+                            t.snack = false;
+                        }, 5000)
+
+                        console.log(e)
+                    }, function (e) {
+                        console.log(e)
+                    })
+                }
+            },
+            closeSnackbar() {
+                this.snack = false;
+                clearTimeout(this.timeout)
             },
             createScrollEvent () {
                 const container_emojis = document.getElementById('emojis-wiki');
@@ -332,10 +366,127 @@
 </script>
 
 <style scoped>
+    .copy-close-btn {
+        width:1.256rem;
+        height:auto;
+        -webkit-transform:translateY(-.1rem);
+        -ms-transform:translateY(-.1rem);
+        transform:translateY(-.1rem)
+    }
+    .snackbar-container p {
+        font-weight:700!important;
+        font-size:1rem!important;
+        /*line-height:147%!important;*/
+        color:#427951!important
+    }
+    @media(max-width:768px) {
+        .snackbar-container p {
+            /*font-size:1.8rem!important*/
+        }
+        .snackbar-container {
+            border-radius:.4rem!important;
+            /*padding:1.5rem 2rem!important;*/
+            /*left:2rem!important;*/
+            /*max-width:calc(100% - 8rem)*/
+        }
+    }
+    .snackbar-container {
+        -webkit-text-size-adjust: 100%;
+        transition: all 400ms ease-in-out;
+        transition-property: top, right, bottom, left, opacity;
+        font-family: Roboto, sans-serif;
+        font-size: 14px;
+        min-height: 14px;
+        background-color: #caff96;
+        position: fixed;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+        line-height: 22px;
+        padding: 18px 24px;
+        bottom: -100px;
+        top: -100px;
+        opacity: 0;
+        z-index: 9999;
+        border-radius:.8rem!important;
+        /*padding:1.8rem 2.2rem 1.5rem!important;*/
+    }
+    .snackbar-container .action {
+        background: inherit;
+        /*display: inline-block;*/
+        border: none;
+        font-size: inherit;
+        text-transform: uppercase;
+        color: #4caf50;
+        margin: 0 0 0 24px;
+        padding: 0;
+        min-width: min-content;
+        cursor: pointer;
+
+        display:-webkit-flex!important;
+        display:-ms-flexbox!important;
+        display:flex!important;
+        -webkit-align-items:center;
+        -ms-flex-align:center;
+        align-items:center;
+        -webkit-justify-content:center;
+        -ms-flex-pack:center;
+        justify-content:center;
+        outline:0
+    }
+
+    @media (min-width: 640px) {
+        .snackbar-container {
+            min-width: 288px;
+            max-width: 568px;
+            display: inline-flex;
+            border-radius: 2px;
+            margin: 24px; }
+    }
+
+    @media (max-width: 640px) {
+        .snackbar-container {
+            left: 0;
+            right: 0;
+            width: 98%;
+            margin: auto;
+        }
+    }
+
+    .snackbar-pos.top-center {
+        bottom: auto !important;
+        top: 10px;
+        left: 50%;
+        transform: translate(-50%, 0); }
+
+    @media (max-width: 640px) {
+        .snackbar-pos.top-center {
+            left: 0;
+            transform: none;
+        }
+    }
+    .snackbar-container.hide {
+        bottom: auto !important;
+        top: -200px !important;
+        opacity: 0 !important;
+    }
+    .snackbar-container.show {
+       visibility: visible !important;
+        bottom: auto !important;  top:10px !important;  opacity:1 !important;
+    }
+
     .emojis-wiki {
-        font-family: Arial;
+        font-family: Arial,sans-serif;
         font-size: 12px;
         font-weight: 400;
+    }
+    .emojis-wiki .btn-copy {
+        transition: all 150ms ease-out;
+        background-color: #3d6eff!important;
+    }
+    .emojis-wiki .btn-copy:hover {
+        background-color: #3a65e3!important;
     }
     .emojis-wiki-emojipicker {
         height: 454px;

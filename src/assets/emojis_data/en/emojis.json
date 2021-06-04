@@ -11122,5 +11122,8 @@
       "tags": ["snoring symbol", "sleep icon", "sleep sign", "sleep symbol", "sleep"],
       "category": 0
     }
-  ]
+  ],
+  "search": "Search",
+  "copy_btn": "Copy",
+  "copy_text": "Copied"
 }

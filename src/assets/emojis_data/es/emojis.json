@@ -11122,5 +11122,8 @@
       "tags": ["símbolo de ronquidos", "icono de dormir", "signo de sueño", "símbolo del sueño", "dormir"],
       "category": 0
     }
-  ]
+  ],
+  "search": "Buscar",
+  "copy_btn": "Copiado",
+  "copy_text": ""
 }
