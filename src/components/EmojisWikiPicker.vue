@@ -1,5 +1,5 @@
 <template>
-    <div class="emojis-wiki">
+    <div class="emojis-wiki p-0 w-100 position-relative tw-fixed tw-bottom-0 md:tw-static">
         <div id="snack" class="snackbar-container snackbar-pos top-center" :class="` ${snack ? 'show' : 'hide'}`">
             <p style="margin: 0px; padding: 0px; font-size: 14px; font-weight: 700; line-height: 1.6em;">{{copy_text}}</p>
             <button class="action" style="color: rgb(66, 121, 81);" @click="closeSnackbar">
@@ -7,15 +7,16 @@
             </button>
         </div>
         <div class="row w-100 m-auto align-items-center justify-content-center">
-            <div class="col-12 tw-relative px-0 px-sm-0 px-md-2">
+            <div class="col-12 tw-relative px-sm-0 pt-2 pt-md-0">
                 <textarea class="w-100 border-0 tw-outline-none tw-pr-5"
                           placeholder="Select emoji and copy"
                           v-model="text"
                           rows="3"
                           style="font-size: 24px"
+                          ref="emojis_textarea"
                 ></textarea>
                 <div style="width: 24px; height: 24px; border-radius: 50%;"
-                     class="tw-absolute tw-bg-grey-20 p-1 tw-right-0 sm:tw-right-0 md:tw-right-2 tw--top-0.5 tw-cursor-pointer"
+                     class="tw-absolute tw-bg-grey-20 p-1 tw-right-2  tw-top-2 sm:tw-right-0 md:tw-right-2 sm:tw--top-0.5 tw-cursor-pointer"
                      @click="text=''"
                      v-if="text.trim() != ''"
                 >
@@ -24,7 +25,7 @@
             </div>
         </div>
         <div class="row w-100 m-auto align-items-center justify-content-center">
-            <div class="col-6 p-0 px-sm-0 px-md-2">
+            <div class="col-6 px-md-0">
                 <div class="tw-w-11 ml-2 tw-py-2.5 tw-relative z-1">
                     <div class="row tw-absolute tw-bg-white tw-border tw-border-grey-30 tw--top-11 tw-left-3 -z-1 pt-10 text-center"
                          :class="`tw-transform ${hovered ? '' : 'tw-pointer-events-none tw--translate-y-3 tw-hidden'} tw-transition tw-duration-300`"
@@ -46,9 +47,9 @@
                     </div>
                </div>
             </div>
-            <div class="col-6 px-0 px-sm-0 px-md-2 tw-relative">
+            <div class="col-6 px-sm-0 tw-relative">
                 <p style="font-size: 12px; font-weight: 400"
-                   class="mb-1 tw-text-primary-100 tw-text-right text-truncate tw-absolute  px-0 px-sm-0 px-md-2 tw-right-0 tw--top-5"
+                   class="mb-1 tw-text-primary-100 tw-text-right text-truncate tw-absolute px-sm-0 px-md-2 tw-right-2 tw--top-5"
                    v-if="selected!=null"
                 >
                     {{selected.name}}
@@ -57,8 +58,8 @@
             </div>
         </div>
         <div class="row w-100 m-auto align-items-center justify-content-center">
-            <div class="col-12 px-0 px-sm-0 px-md-2">
-                <div class="emojis-wiki__container tw-bg-grey-20 " style="height: 400px; border-radius: 8px;">
+            <div class="col-12 px-0 px-sm-0">
+                <div class="emojis-wiki__container tw-bg-grey-20 " style="border-radius: 8px;">
                     <div class="emojis-wiki-emojipicker__tabs tw-overflow-x-hidden tw-relative px-2 mb-2 tw-uppercase tw-text-grey-50 tw-h-auto tw-flex">
                         <span class="px-2 tw-py-3.5 tw-transition tw-duration-200 z-1"
                               :class="{ 'tw-text-primary-100 tw-border-b-2 tw-border-primary-50': search_tab === true }"
@@ -80,7 +81,7 @@
                         </div>
                         <div class="tw-w-full tw-border-b-2 tw-border-grey-30 tw-absolute tw-left-0 tw-bottom-0"></div>
                     </div>
-                    <div class="tw-h-full tw-w-full tw-flex tw-flex-col tw-overflow-y-hidden tw-bg-grey-20 pb-2" style="height: calc(400px - 44px); border-radius: 8px;">
+                    <div class="tw-h-full tw-w-full tw-flex tw-flex-col tw-overflow-y-hidden tw-bg-grey-20 pb-2" style="height: calc(60vh - 50px); border-radius: 8px;">
                         <div id="emojis-wiki" class="tw-overflow-auto tw-relative tw-h-full tw-w-full pb-2">
                             <div v-if="search_tab">
                                 <div class="px-3 py-2">
@@ -350,8 +351,12 @@
                 return closest;
             },
             chooseEmoji (value) {
+                let textarea = this.$refs.emojis_textarea;
+                let cursorPosition = textarea.selectionStart
                 value = (value.variations && this.variation >= 0) ? value.variations[this.variation] : value.emoji;
-                this.text += value;
+                let output = [this.text.slice(0, cursorPosition), value, this.text.slice(cursorPosition)].join('');
+                this.text = output;
+                this.$nextTick(() => textarea.setSelectionRange(cursorPosition+value.length, cursorPosition+value.length));
             },
             runSearch: _.debounce(function(e)  {
                 if(this.search.trim()=='')
@@ -455,6 +460,9 @@
             width: 98%;
             margin: auto;
         }
+        .emojis-wiki {
+            height: 70vh !important;
+        }
     }
 
     .snackbar-pos.top-center {
@@ -483,6 +491,7 @@
         font-family: Arial,sans-serif;
         font-size: 12px;
         font-weight: 400;
+        height: 100%;
     }
     .emojis-wiki .btn-copy {
         transition: all 150ms ease-out;
