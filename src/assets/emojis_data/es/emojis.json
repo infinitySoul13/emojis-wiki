@@ -11125,5 +11125,8 @@
   ],
   "search": "Buscar",
   "copy_btn": "Copiado",
-  "copy_text": ""
+  "copy_text": "Copiado",
+  "textarea_placeholder": "Selecciona emoji y copia",
+  "page_name": "Teclado Emoji",
+  "search_notes": "Empieza a escribir el nombre del emoji"
 }

@@ -1,18 +1,18 @@
 <template>
-    <div class="emojis-wiki p-0 w-100 position-relative tw-fixed tw-bottom-0 md:tw-static">
+    <div class="emojis-wiki p-0 w-100 h-100 m-auto position-relative tw-fixed tw-bottom-0 md:tw-static">
         <div id="snack" class="snackbar-container snackbar-pos top-center" :class="` ${snack ? 'show' : 'hide'}`">
             <p style="margin: 0px; padding: 0px; font-size: 14px; font-weight: 700; line-height: 1.6em;">{{copy_text}}</p>
             <button class="action" style="color: rgb(66, 121, 81);" @click="closeSnackbar">
                 <img src="\icons\close_2.svg" alt="Dismiss" class="copy-close-btn">
             </button>
         </div>
-        <div class="row w-100 m-auto align-items-center justify-content-center">
+        <div class="row w-100 m-auto align-items-center justify-content-center" style="height: 15vh;">
             <div class="col-12 tw-relative px-sm-0 pt-2 pt-md-0">
-                <textarea class="w-100 border-0 tw-outline-none tw-pr-5"
-                          placeholder="Select emoji and copy"
+                <textarea class="emojis-wiki-textarea w-100 h-100 border-0 tw-outline-none tw-pr-5 tw-text-blue-100"
+                          :placeholder="textarea_placeholder"
                           v-model="text"
                           rows="3"
-                          style="font-size: 24px"
+                          style="font-size: 24px;"
                           ref="emojis_textarea"
                 ></textarea>
                 <div style="width: 24px; height: 24px; border-radius: 50%;"
@@ -24,7 +24,7 @@
                 </div>
             </div>
         </div>
-        <div class="row w-100 m-auto align-items-center justify-content-center">
+        <div class="row w-100 m-auto align-items-center justify-content-center"  style="height: 14vh;">
             <div class="col-6 px-md-0">
                 <div class="tw-w-11 ml-2 tw-py-2.5 tw-relative z-1">
                     <div class="row tw-absolute tw-bg-white tw-border tw-border-grey-30 tw--top-11 tw-left-3 -z-1 pt-10 text-center"
@@ -57,7 +57,7 @@
                 <button class="btn btn-primary btn-copy" style="float: right; width: 117px; height: 44px" @click="copyToBuffer">{{copy_btn}}</button>
             </div>
         </div>
-        <div class="row w-100 m-auto align-items-center justify-content-center">
+        <div class="row w-100 m-auto align-items-center justify-content-center" style="height: 50vh;">
             <div class="col-12 px-0 px-sm-0">
                 <div class="emojis-wiki__container tw-bg-grey-20 " style="border-radius: 8px;">
                     <div class="emojis-wiki-emojipicker__tabs tw-overflow-x-hidden tw-relative px-2 mb-2 tw-uppercase tw-text-grey-50 tw-h-auto tw-flex">
@@ -68,7 +68,7 @@
                         >
                             {{search_text}}
                         </span>
-                        <div class="tw-overflow-x-auto tw-flex emojis-wiki-scrollbar-hidden w-100 m-auto">
+                        <div class="tw-overflow-x-auto tw-flex emojis-wiki-scrollbar-hidden w-100 m-auto justify-content-between">
                             <span v-for="(category, c) in categories"
                                   :key="c" :class="{ 'tw-text-primary-100 tw-border-b-2 tw-border-primary-50': c === active&&!search_tab }"
                                   class="tw-flex tw-flex-none px-2 tw-py-3.5 tw-transition tw-duration-300 z-1"
@@ -81,7 +81,7 @@
                         </div>
                         <div class="tw-w-full tw-border-b-2 tw-border-grey-30 tw-absolute tw-left-0 tw-bottom-0"></div>
                     </div>
-                    <div class="tw-h-full tw-w-full tw-flex tw-flex-col tw-overflow-y-hidden tw-bg-grey-20 pb-2" style="height: calc(60vh - 50px); border-radius: 8px;">
+                    <div class="tw-h-full tw-w-full tw-flex tw-flex-col tw-overflow-y-hidden tw-bg-grey-20 pb-2" style="height: calc(50vh - 50px);border-radius: 8px;">
                         <div id="emojis-wiki" class="tw-overflow-auto tw-relative tw-h-full tw-w-full pb-2">
                             <div v-if="search_tab">
                                 <div class="px-3 py-2">
@@ -102,24 +102,27 @@
                                            class="mt-3 mb-1 p-0 tw-text-grey-50 tw-text-left text-truncate"
                                            v-if="search_results.length<=0"
                                         >
-                                            Start writing the name of the emoji
+                                            {{search_notes}}
                                         </p>
                                     </div>
                                 </div>
-                                <div class="px-3 mt-2 tw-grid tw-grid-cols-8 md:tw-grid-cols-12 gap-2 tw-center tw-justify-start tw-overflow-x-hidden">
-                                    <div v-for="(result, e) in search_results"
-                                         :key="`s_emoji_${e}`"
-                                         class="tw-text-2xl tw-overflow-hidden tw-cursor-pointer tw-transition tw-duration-200 tw-hover:bg-grey-200 tw-hover:bg-opacity-50 tw-rounded-md tw-w-8 sm:tw-w-full tw-h-full tw-items-center tw-justify-center"
-                                         @mouseenter="selected = { ...result.item }"
-                                         @mouseleave="selected = ''"
-                                         @click="chooseEmoji(result.item)"
+                                <div class="emojis-grid px-3 tw-center tw-grid tw-justify-items-start tw-overflow-x-hidden">
+                                    <div
+                                            v-for="(result, e) in search_results"
+                                            :key="`emoji_${e}`"
+                                            class="emoji-cell d-flex tw-items-center tw-overflow-hidden tw-cursor-pointer tw-transition tw-duration-200 tw-rounded-md align-items-center hover:tw-bg-grey-10"
+                                            @mouseenter="selected = { ...result.item }"
+                                            @mouseleave="selected = ''"
+                                            @click="chooseEmoji(result.item)"
                                     >
-                                        <template v-if="result.item.variations && variation >= 0 && result.item.variations[variation]">
-                                            {{ result.item.variations[variation] }}
-                                        </template>
-                                        <template v-else>
-                                            {{ result.item.emoji }}
-                                        </template>
+                                        <div class="emoji d-flex tw-justify-center align-items-center m-auto">
+                                            <template v-if="result.item.variations && variation >= 0 && result.item.variations[variation]">
+                                                {{ result.item.variations[variation] }}
+                                            </template>
+                                            <template v-else>
+                                                {{ result.item.emoji }}
+                                            </template>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -135,22 +138,27 @@
                                         >
                                             {{ category }}
                                         </div>
-                                        <div class="px-3 tw-grid tw-grid-cols-8 md:tw-grid-cols-12 gap-2 tw-center tw-justify-start tw-overflow-x-hidden">
-<!--                                            tw-flex tw-flex-items tw-flex-wrap sm:-->
-                                            <div v-for="(emoji, e) in $data[category]"
-                                                 :key="`emoji_${e}`"
-                                                 class="tw-text-2xl tw-overflow-hidden tw-cursor-pointer tw-transition tw-duration-200 tw-hover:bg-grey-200 tw-hover:bg-opacity-50 tw-rounded-md tw-w-8 sm:tw-w-full tw-h-full tw-items-center tw-justify-center"
-                                                 @mouseenter="selected = { ...emoji }"
-                                                 @mouseleave="selected = ''"
-                                                 @click="chooseEmoji(emoji)"
-                                            >
-                                                <template v-if="emoji.variations && variation >= 0 && emoji.variations[variation]">
-                                                    {{ emoji.variations[variation] }}
-                                                </template>
-                                                <template v-else>
-                                                    {{ emoji.emoji }}
-                                                </template>
-                                            </div>
+                                        <div class="emojis-grid px-3 tw-center tw-grid tw-justify-items-start tw-overflow-x-hidden">
+<!--                                           tw-grid tw-grid-cols-8 md:tw-grid-cols-12 gap-2  tw-flex tw-flex-items tw-flex-wrap sm:-->
+                                           <div
+                                                   v-for="(emoji, e) in $data[category]"
+                                                   :key="`emoji_${e}`"
+                                                   class="emoji-cell d-flex tw-items-center tw-overflow-hidden tw-cursor-pointer tw-transition tw-duration-200 tw-rounded-md align-items-center hover:tw-bg-grey-10"
+                                                   @mouseenter="selected = { ...emoji }"
+                                                   @mouseleave="selected = ''"
+                                                   @click="chooseEmoji(emoji)"
+                                           >
+<!--                                               tw-w-8 sm:tw-w-full tw-h-full-->
+                                               <div class="emoji d-flex tw-justify-center align-items-center m-auto">
+                                                   <template v-if="emoji.variations && variation >= 0 && emoji.variations[variation]">
+                                                       {{ emoji.variations[variation] }}
+                                                   </template>
+                                                   <template v-else>
+                                                       {{ emoji.emoji }}
+                                                   </template>
+                                               </div>
+                                           </div>
+
                                         </div>
                                     </div>
                                 </template>
@@ -211,7 +219,10 @@
                 timeout:null,
                 search_text:'Search',
                 copy_btn:'Copy',
-                copy_text:'Copied'
+                copy_text:'Copied',
+                textarea_placeholder: "Select emoji and copy",
+                page_name: "Emoji Keyboard",
+                search_notes: "Start writing the name of the emoji"
             }
         },
         created () {
@@ -220,6 +231,10 @@
             this.categories = data.categories;
             this.search_text = data.search;
             this.copy_btn = data.copy_btn;
+            this.copy_text = data.copy_text;
+            this.textarea_placeholder = data.textarea_placeholder;
+            this.page_name = data.page_name;
+            this.search_notes = data.search_notes;
             // this.copy_text = data.copy_text;
             // this.categories = {...this.categories.map(cat => this[`$${cat}`] = [])}
             this.categories.forEach(category => {
@@ -252,7 +267,10 @@
                 this.emojis = data;
                 this.search_text = data.search;
                 this.copy_btn = data.copy_btn;
-                // this.copy_text = data.copy_text;
+                this.copy_text = data.copy_text;
+                this.textarea_placeholder = data.textarea_placeholder;
+                this.page_name = data.page_name;
+                this.search_notes = data.search_notes;
                 this.categories = data.categories;
                 this.categories.forEach(category => {
                     const index = this.emojis.categories.findIndex(cat => cat === category);
@@ -374,6 +392,34 @@
 </script>
 
 <style scoped>
+    .emojis-wiki-textarea::placeholder {
+        opacity: 1 !important;
+        color:#606D9B !important;
+    }
+    .emojis-wiki input::placeholder {
+        opacity: 1 !important;
+        color:#606D9B !important;
+    }
+    .emojis-wiki-textarea::-moz-placeholder,
+    .emojis-wiki-textarea::-webkit-input-placeholder,
+    .emojis-wiki-textarea::-ms-input-placeholder {
+        color:#606D9B !important;
+        opacity: 1;
+    }
+    .emojis-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 72px);
+        justify-content: space-between;
+    }
+    .emoji-cell {
+        height: 72px;
+        width: 72px;
+    }
+    .emoji {
+        height: 44px;
+        width: 44px;
+        font-size: 2.4rem;
+    }
     .copy-close-btn {
         width:1.256rem;
         height:auto;
@@ -461,7 +507,19 @@
             margin: auto;
         }
         .emojis-wiki {
-            height: 70vh !important;
+            height: 79vh !important;
+        }
+        .emojis-grid {
+            grid-template-columns: repeat(auto-fill, 44px);
+        }
+        .emoji-cell {
+            height: 44px;
+            width: 44px;
+        }
+        .emoji {
+            height: 28px;
+            width: 28px;
+            font-size: 1.5rem;
         }
     }
 

@@ -17,7 +17,7 @@
                           <div class="col-8 p-0">
                               <div class="row m-auto w-100 justify-content-end">
                                   <form class="d-flex w-75 d-none d-md-flex">
-                                      <input class="form-control" type="search" aria-label="Search"
+                                      <input class="emojis-wiki-search-input w-100 tw-outline-none tw-text-sm py-2 px-3 tw-rounded " style="border-radius: 8px" type="search" aria-label="Search"
                                              placeholder="Search Emojis..." name="s"
                                       />
                                       <input type="hidden" value="1" name="sentence" />
@@ -64,7 +64,7 @@
               </div>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <form class="d-flex mx-auto my-2 px-2">
-                      <input class="form-control me-2" type="search" aria-label="Search"
+                      <input class="emojis-wiki-search-input w-100 tw-outline-none tw-text-sm py-2 px-3 tw-rounded" style="border-radius: 8px" type="search" aria-label="Search"
                              placeholder="Search Emojis..." name="s"
                       />
                       <input type="hidden" value="1" name="sentence" />
@@ -79,7 +79,7 @@
           <div class="row w-100 m-auto align-items-center justify-content-center">
               <div class="col-sm-11 col-12 p-0 p-sm-2">
                   <div class="row w-100 m-auto d-none d-sm-block">
-                      <h1 class="p-0 text-start" style="font-size: 50px; color:black; font-weight:700; line-height: 57.5px;">Emoji Keyboard</h1>
+                      <h1 class="p-0 text-start" style="font-size: 50px; color:black; font-weight:700; line-height: 57.5px; margin-bottom: 40px">Emoji Keyboard</h1>
                   </div>
                   <div class="row w-100 m-auto align-items-center justify-content-center bg-white tw-relative p-sm-3 p-0" style="border-radius: 8px;">
                       <EmojisWikiPicker :local="local"></EmojisWikiPicker>
@@ -121,4 +121,8 @@
   .navbar-toggler-icon {
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
   }
+    .emojis-wiki-search-input::placeholder {
+        opacity: 1 !important;
+        color:#606D9B !important;
+    }
 </style>

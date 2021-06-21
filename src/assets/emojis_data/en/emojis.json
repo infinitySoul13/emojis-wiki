@@ -11125,5 +11125,8 @@
   ],
   "search": "Search",
   "copy_btn": "Copy",
-  "copy_text": "Copied"
+  "copy_text": "Copied",
+  "textarea_placeholder": "Select emoji and copy",
+  "page_name": "Emoji Keyboard",
+  "search_notes": "Start writing the name of the emoji"
 }

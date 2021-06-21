@@ -11125,5 +11125,8 @@
   ],
   "search": "Сhercher",
   "copy_btn": "Copier",
-  "copy_text": ""
+  "copy_text": "Copié",
+  "textarea_placeholder": "Sélectionnez emoji et copiez",
+  "page_name": "Clavier Emoji",
+  "search_notes": "Commencez à écrire le nom de l'emoji"
 }
