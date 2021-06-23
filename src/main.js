@@ -3,9 +3,9 @@ import App from './App.vue'
 
 Vue.config.productionTip = false;
 
-import '@/assets/tailwind1.css'
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import '@/assets/tailwind1.css'
 
 import VueClipboard from 'vue-clipboard2'
 Vue.use(VueClipboard);
