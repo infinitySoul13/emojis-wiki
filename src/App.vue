@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="emojis-wiki h-100">
+  <div id="app" class="emojis-wiki h-100 w-100">
       <nav class="navbar navbar-dark tw-bg-primary-50">
           <div class="container-sm container-fluid">
               <div class="row w-100 m-auto align-items-center justify-content-center">
@@ -7,17 +7,17 @@
                       <div class="row w-100 m-auto align-items-center">
                           <div class="col-4 p-0">
                               <a class="navbar-brand d-flex" style="margin-right: auto" href="#">
-                                  <img
-                                          src="https://emojis.wiki/wp-content/themes/emoji-v4/images/emojiswiki_logo.svg"
-                                          class="d-inline-block align-text-top"
-                                          alt="logo"
+                                  <img src="https://emojis.wiki/wp-content/themes/emoji-v4/images/emojiswiki_logo.svg"
+                                       class="d-inline-block align-text-top"
+                                       alt="logo"
                                   />
                               </a>
                           </div>
                           <div class="col-8 p-0">
                               <div class="row m-auto w-100 justify-content-end">
                                   <form class="d-flex w-75 d-none d-md-flex">
-                                      <input class="emojis-wiki-search-input w-100 tw-outline-none tw-text-sm py-2 px-3 tw-rounded " style="border-radius: 8px" type="search" aria-label="Search"
+                                      <input class="emojis-wiki-search-input w-100 tw-outline-none tw-text-sm py-2 px-3 tw-rounded "
+                                             style="border-radius: 8px" type="search" aria-label="Search"
                                              placeholder="Search Emojis..." name="s"
                                       />
                                       <input type="hidden" value="1" name="sentence" />
@@ -25,92 +25,52 @@
                                           <span class="search-button"></span>
                                       </button>
                                   </form>
-<!--                                  <div class="position-relative p-0 my-auto mx-2" style="height: 44px; width: 44px;">-->
-                                      <button class="navbar-toggler p-1"
-                                              title="English"
-                                              style="height: 44px; width: 44px; border-color: rgba(255,255,255,0.40)"
-                                              id="dropdownMenu2" data-bs-toggle="dropdown"
-                                      >
-<!--                                           data-bs-toggle="collapse"
-                                              data-bs-target="#navbarLang" aria-controls="navbarLang"-->
-                                          <img
-                                                  class="m-auto"
-                                                  src="/icons/lang.svg"
-                                                  alt="English"
-                                          />
-                                      </button>
-                                      <ul class="tw-border-none tw-absolute mt-2 dropdown-menu mx-auto mx-sm-0 tw-w-11/12 tw-right-0 tw-left-0 sm:tw-w-80 sm:tw-right-auto sm:tw-left-auto tw-rounded-md tw-shadow-lg tw-bg-white"
-                                          aria-labelledby="dropdownMenu2"
-                                      >
-                                          <li><button class="dropdown-item hover:tw-bg-grey-10" :class="{ 'tw-text-primary-50': local !=='en' }" type="button" @click="chooseLocal('en')">English</button></li>
-                                          <li><button class="dropdown-item hover:tw-bg-grey-10" :class="{ 'tw-text-primary-50': local !=='ru' }" type="button" @click="chooseLocal('ru')">Русский</button></li>
-                                          <li><button class="dropdown-item hover:tw-bg-grey-10" :class="{ 'tw-text-primary-50': local !=='fr' }" type="button" @click="chooseLocal('fr')">Français</button></li>
-                                          <li><button class="dropdown-item hover:tw-bg-grey-10" :class="{ 'tw-text-primary-50': local !=='de' }" type="button" @click="chooseLocal('de')">Deutsch</button></li>
-                                          <li><button class="dropdown-item hover:tw-bg-grey-10" :class="{ 'tw-text-primary-50': local !=='es' }" type="button" @click="chooseLocal('es')">Español</button></li>
-                                          <li><button class="dropdown-item hover:tw-bg-grey-10" :class="{ 'tw-text-primary-50': local !=='it' }" type="button" @click="chooseLocal('it')">Italiano</button></li>
-                                          <li><button class="dropdown-item hover:tw-bg-grey-10" :class="{ 'tw-text-primary-50': local !=='pt' }" type="button" @click="chooseLocal('pt')">Português</button></li>
-                                      </ul>
-<!--                                  </div>-->
-
-<!--                                  <div class="tw-relative tw-inline-block tw-text-left">-->
-<!--                                      <div>-->
-<!--                                          <button class="navbar-toggler p-1"-->
-<!--                                                  title="English"-->
-<!--                                                  style="height: 44px; width: 44px; border-color: rgba(255,255,255,0.40)"-->
-<!--                                                  id="menu-button" aria-expanded="true" aria-haspopup="true"-->
-<!--                                                  @click="menu = !menu"-->
-<!--                                          >-->
-<!--                                              <img-->
-<!--                                                      class="m-auto"-->
-<!--                                                      src="/icons/lang.svg"-->
-<!--                                                      alt="English"-->
-<!--                                              />-->
-<!--                                          </button>-->
-<!--                                      </div>-->
-<!--                                      <div class="tw-origin-top-right tw-absolute tw-right-0 mt-2 tw-w-56 tw-rounded-md tw-shadow-lg tw-bg-white tw-ring-1 tw-ring-black tw-ring-opacity-5 focus:tw-outline-none"-->
-<!--                                           v-if="menu" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1"-->
-<!--                                      >-->
-<!--                                          <div class="py-1" role="none">-->
-<!--                                              <a href="#" class="tw-text-gray-700 tw-block px-4 py-2 tw-text-sm" role="menuitem" tabindex="-1" id="menu-item-0">Account settings</a>-->
-<!--                                              <a href="#" class="tw-text-gray-700 tw-block px-4 py-2 tw-text-sm" role="menuitem" tabindex="-1" id="menu-item-1">Support</a>-->
-<!--                                              <a href="#" class="tw-text-gray-700 tw-block px-4 py-2 tw-text-sm" role="menuitem" tabindex="-1" id="menu-item-2">License</a>-->
-<!--                                          </div>-->
-<!--                                      </div>-->
-<!--                                  </div>-->
+                                  <button class="navbar-toggler p-1"
+                                          title="English"
+                                          style="height: 44px; width: 44px; border-color: rgba(255,255,255,0.40)"
+                                          id="dropdownMenu2" data-bs-toggle="dropdown"
+                                  >
+                                      <img class="m-auto"
+                                           src="/icons/lang.svg"
+                                           alt="English"
+                                      />
+                                  </button>
+                                  <ul class="tw-border-none tw-absolute mt-2 dropdown-menu mx-auto mx-sm-0 tw-w-11/12 tw-right-0 tw-left-0 sm:tw-w-80 sm:tw-right-auto sm:tw-left-auto tw-rounded-md tw-shadow-lg tw-bg-white"
+                                      aria-labelledby="dropdownMenu2"
+                                  >
+                                      <li><button class="dropdown-item hover:tw-bg-grey-10" :class="{ 'tw-text-primary-50': local !=='en' }" type="button" @click="chooseLocal('en')">English</button></li>
+                                      <li><button class="dropdown-item hover:tw-bg-grey-10" :class="{ 'tw-text-primary-50': local !=='ru' }" type="button" @click="chooseLocal('ru')">Русский</button></li>
+                                      <li><button class="dropdown-item hover:tw-bg-grey-10" :class="{ 'tw-text-primary-50': local !=='fr' }" type="button" @click="chooseLocal('fr')">Français</button></li>
+                                      <li><button class="dropdown-item hover:tw-bg-grey-10" :class="{ 'tw-text-primary-50': local !=='de' }" type="button" @click="chooseLocal('de')">Deutsch</button></li>
+                                      <li><button class="dropdown-item hover:tw-bg-grey-10" :class="{ 'tw-text-primary-50': local !=='es' }" type="button" @click="chooseLocal('es')">Español</button></li>
+                                      <li><button class="dropdown-item hover:tw-bg-grey-10" :class="{ 'tw-text-primary-50': local !=='it' }" type="button" @click="chooseLocal('it')">Italiano</button></li>
+                                      <li><button class="dropdown-item hover:tw-bg-grey-10" :class="{ 'tw-text-primary-50': local !=='pt' }" type="button" @click="chooseLocal('pt')">Português</button></li>
+                                  </ul>
                                   <button class="navbar-toggler d-block d-md-none p-1 tw-ml-2"
                                           style="height: 44px; width: 44px; color: white; border-color: rgba(255,255,255,0.40)"
-                                          type="button" data-bs-toggle="collapse"
-                                          data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                          aria-expanded="false" aria-label="Toggle navigation"
+                                          type="button"
+                                          id="dropdownMenu1" data-bs-toggle="dropdown"  aria-expanded="false"
                                   >
                                       <span class="navbar-toggler-icon m-auto"  style="color: white"></span>
                                   </button>
+                                  <div class="text-center tw-border-none tw-absolute mt-2 dropdown-menu mx-auto mx-sm-0 tw-w-11/12 tw-right-0 tw-left-0 sm:tw-w-80 sm:tw-right-auto sm:tw-left-auto tw-rounded-md tw-shadow-lg tw-bg-white"
+                                      aria-labelledby="dropdownMenu1"
+                                  >
+                                      <div class="category-grid tw-grid tw-justify-items-start align-items-start p-2">
+                                          <a v-for="(category, index) in categories_names"
+                                             :key="index"
+                                             :href="categories_urls[index]"
+                                             class="link-light-bg d-flex tw-justify-center align-items-center"
+                                          >
+                                              {{categories_smiles[index]}}
+                                              <span>{{category}}</span>
+                                          </a>
+                                      </div>
+                                  </div>
                               </div>
                           </div>
                       </div>
                   </div>
-              </div>
-<!--              <div class="collapse navbar-collapse" id="navbarLang">-->
-<!--                  <ul class="navbar-nav me-auto mb-2 mb-lg-0" aria-labelledby="dropdownMenuButton1">-->
-<!--                      <li class="nav-link"><div @click="local='en'">English</div></li>-->
-<!--                      <li class="nav-link"><div @click="local='ru'">Русский</div></li>-->
-<!--                      <li class="nav-link"><div @click="local='fr'">Français</div></li>-->
-<!--                      <li class="nav-link"><div @click="local='de'">Deutsch</div></li>-->
-<!--                      <li class="nav-link"><div @click="local='es'">Español</div></li>-->
-<!--                      <li class="nav-link"><div @click="local='it'">Italiano</div></li>-->
-<!--                      <li class="nav-link"><div @click="local='pt'">Português</div></li>-->
-<!--                  </ul>-->
-<!--              </div>-->
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <form class="d-flex mx-auto my-2 px-2">
-                      <input class="emojis-wiki-search-input w-100 tw-outline-none tw-text-sm py-2 px-3 tw-rounded" style="border-radius: 8px" type="search" aria-label="Search"
-                             placeholder="Search Emojis..." name="s"
-                      />
-                      <input type="hidden" value="1" name="sentence" />
-                      <button aria-label="Favorite" class="search-button-wrap">
-                          <span class="search-button"></span>
-                      </button>
-                  </form>
               </div>
           </div>
       </nav>
@@ -249,8 +209,6 @@
           </div>
       </footer>
   </div>
-
-
 </template>
 
 <script>
@@ -274,13 +232,71 @@
               es:'Teclado Emoji',
               pt:'Teclado Emoji',
               fr:'Clavier Emoji',
-          }
+          },
+          categories_names:[],
+          categories: {
+              en:[ "Smileys & Emotion", "People & Body", "Animals & Nature", "Food & Drink",
+                   "Symbols", "Travel & Places", "Objects", "Activities",
+                  "Flags", 'Thematic emojis', 'Holidays', 'Random emoji'
+              ],
+              ru:["Смайлики и эмоции", "Люди и части тела", "Животные и растения", "Еда и напитки",
+                  "Символы", "Путешествия и местности", "Предметы", "Активность",
+                  "Флаги", "Тематические смайлы", "Праздники","Случайные смайлы"
+              ],
+              de:[
+                  "Smileys und Emotionen", "Menschen und Körper", "Tiere und Natur", "Essen und Trinken",
+                  "Symbole", "Reisen und Orte", "Objekte", "Aktivitäten",
+                  "Flaggen", "Thematische Emojis", 'Ferien', 'Zufälliges Emoji'
+              ],
+              it:[
+                  "Sorrisi ed emozioni", "Persone e corpo", "Animali e natura", "Cibo e bevanda",
+                  "Simboli", "Viaggio e Luoghi", "Oggetti", "Attività",
+                  "Bandiere", "Emoji a tema", 'Vacanze', "Emoji casuali"
+              ],
+              es:[
+                  "Smileys y emociónes", "Personas y cuerpo", "Animales y naturaleza", "Comida y bebida",
+                  "Símbolos", "Viajes y lugares", "Objetos", "Actividades",
+                  "Banderas", 'Emojis temáticos', 'Vacaciones', 'Emoji aleatorio'
+              ],
+              pt:[
+                  "Smileys e Emoções", "Pessoas e Corpo", "Animais e Natureza", "Comida e Bebida",
+                  "Símbolo", "Viagens e Lugares", "Objetos", "Atividades",
+                  "Bandeiras",'Emojis temáticos','Feriados', 'Emoji aleatório'
+              ],
+              fr:[
+                  "Smileys et émotions", "Personnes & corps", "Animaux & nature", "Nourriture et boissons",
+                  "Symboles", "Voyages & lieux", "Objets", "Activités",
+                  "Drapeaux",'Emojis thématiques', 'Vacances', 'Emoji aléatoire'
+              ],
+          },
+          categories_urls: [
+              '/smileys-and-emotion-category/',
+              "/people-and-body-category/" ,"/animals-and-nature-category/" ,"/food-and-drink-category/",
+              "/symbols-category/","/travel-and-places-category/", "/objects-category/", "/activities-category/",
+              "/flags-category/", "/themes/", "/holidays/", "/?redirect_to=random"
+          ],
+          categories_smiles: [
+              '🤣', '🤷', '🐼', '🍕',
+              '💯', '🌇', '📮', '🎈',
+              '🇺🇸', '🌈', '🎉', '🎲'
+          ],
       }
     },
+      mounted() {
+          window.locale = document.documentElement.lang;
+          let lang = window.locale;
+          if(!lang) {
+              lang = 'en'
+          }
+          this.local = lang;
+          this.page_name = this.page_names[lang];
+          this.categories_names = this.categories[lang];
+      },
       methods:{
         chooseLocal(lang) {
             this.local = lang;
             this.page_name = this.page_names[lang];
+            this.categories_names = this.categories[lang];
         }
       }
   }
@@ -308,4 +324,46 @@
       text-decoration: none;
       background-color: #3D6EFF !important;
   }
+  a.link-light-bg {
+      font-size: 1.8rem;
+      color: #3d6eff;
+      width: 4.9rem;
+      /*margin-right: 2rem;*/
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      text-decoration: none;
+      -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+      flex-shrink: 0;
+      padding: 1px;
+  }
+  .link-light-bg span{
+      font-size: .8rem;
+      flex-grow: 1;
+      -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+      line-height: 147%;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      text-align: center;
+  }
+    .category-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 4.9rem);
+        justify-content: space-between;
+    }
 </style>

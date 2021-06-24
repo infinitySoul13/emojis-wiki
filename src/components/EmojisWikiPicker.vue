@@ -7,7 +7,7 @@
             </button>
         </div>
         <div class="row w-100 m-auto align-items-center justify-content-center" style="height: 15vh;">
-            <div class="col-12 tw-relative px-sm-0 pt-2 pt-md-0">
+            <div class="col-12 h-100 tw-relative px-sm-0 pt-2 pt-md-0">
                 <textarea class="emojis-wiki-textarea w-100 h-100 border-0 tw-outline-none tw-pr-5 tw-text-blue-100"
                           :placeholder="textarea_placeholder"
                           v-model="text"
@@ -24,7 +24,7 @@
                 </div>
             </div>
         </div>
-        <div class="row w-100 m-auto align-items-center justify-content-center"  style="height: 14vh;">
+        <div class="row w-100 m-auto align-items-center justify-content-center"  style="height: 15vh;">
             <div class="col-6 px-md-0">
                 <div class="tw-w-11 ml-2 tw-py-2.5 tw-relative z-1">
                     <div class="row tw-absolute tw-bg-white tw-border tw-border-grey-30 tw--top-11 tw-left-3 -z-1 pt-10 text-center"
@@ -49,7 +49,7 @@
             </div>
             <div class="col-6 px-sm-0 tw-relative">
                 <p style="font-size: 12px; font-weight: 400"
-                   class="mb-1 tw-text-primary-100 tw-text-right text-truncate tw-absolute px-sm-0 px-md-2 tw-right-2 tw--top-5"
+                   class="mb-1 tw-text-primary-100 tw-text-right text-truncate tw-absolute px-sm-0 px-md-2 tw-right-2 tw--top-4 sm:tw--top-4"
                    v-if="selected!=null"
                 >
                     {{selected.name}}
@@ -58,7 +58,7 @@
             </div>
         </div>
         <div class="row w-100 m-auto align-items-center justify-content-center" style="height: 50vh;">
-            <div class="col-12 px-0 px-sm-0">
+            <div class="col-12 h-100 px-0 px-sm-0">
                 <div class="emojis-wiki__container tw-bg-grey-20 " style="border-radius: 8px;">
                     <div class="emojis-wiki-emojipicker__tabs tw-overflow-x-hidden tw-relative px-2 mb-2 tw-uppercase tw-text-grey-50 tw-h-auto tw-flex">
                         <span class="px-2 tw-py-3.5 tw-transition tw-duration-200 z-1"
@@ -370,11 +370,22 @@
             },
             chooseEmoji (value) {
                 let textarea = this.$refs.emojis_textarea;
-                let cursorPosition = textarea.selectionStart
+
+                //Methods 2
+                // let cursorPosition = textarea.selectionStart;
+                // value = (value.variations && this.variation >= 0) ? value.variations[this.variation] : value.emoji;
+                // let output = [this.text.slice(0, cursorPosition), value, this.text.slice(cursorPosition)].join('');
+                // this.text = output;
+                // this.$nextTick(() => textarea.setSelectionRange(cursorPosition+value.length, cursorPosition+value.length));
+
+                //Methods 1
                 value = (value.variations && this.variation >= 0) ? value.variations[this.variation] : value.emoji;
-                let output = [this.text.slice(0, cursorPosition), value, this.text.slice(cursorPosition)].join('');
-                this.text = output;
-                this.$nextTick(() => textarea.setSelectionRange(cursorPosition+value.length, cursorPosition+value.length));
+                this.text += value;
+                textarea.scrollTop = textarea.scrollHeight ;
+                const active = document.activeElement;
+                if(active !== textarea) {
+                    textarea.blur()
+                }
             },
             runSearch: _.debounce(function(e)  {
                 if(this.search.trim()=='')

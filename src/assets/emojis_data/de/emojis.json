@@ -1,4 +1,7 @@
-{"categories":["Smileys und Emotionen", "Menschen und Körper", "Aktivitäten","Essen und Trinken","Reisen und Orte", "Tiere und Natur", "Objekte", "Komponente", "Symbole", "Flaggen"],
+{
+  "categories":[
+    "Smileys und Emotionen", "Menschen und Körper", "Aktivitäten","Essen und Trinken","Reisen und Orte", "Tiere und Natur", "Objekte", "Komponente", "Symbole", "Flaggen"
+  ],
   "list": [
   {
     "emoji": "🥇",
