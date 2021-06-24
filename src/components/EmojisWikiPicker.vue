@@ -89,6 +89,7 @@
                                         <input v-model="search"
                                                @input="runSearch"
                                                class="w-100 tw-outline-none tw-text-sm py-2 px-3 tw-rounded w-ring tw-ring-4 tw-ring-grey-10"
+                                               style="font-size: 16px"
                                                :placeholder="search_text"
                                         />
                                         <div style="width: 24px; height: 24px; border-radius: 50%;"
@@ -158,7 +159,6 @@
                                                    </template>
                                                </div>
                                            </div>
-
                                         </div>
                                     </div>
                                 </template>
