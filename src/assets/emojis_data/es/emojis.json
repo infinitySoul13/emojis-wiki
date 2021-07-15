@@ -11128,5 +11128,8 @@
   "copy_text": "Copiado",
   "textarea_placeholder": "Selecciona emoji y copia",
   "page_name": "Teclado Emoji",
-  "search_notes": "Empieza a escribir el nombre del emoji"
+  "search_notes": "Empieza a escribir el nombre del emoji",
+  "accordions": ["Plataformas", "Emoji Versión", "Y más"],
+  "accordion3": ["Ayuda","Política de privacidad","Marca comercial","Sobre"],
+  "footer_text": "Hecho con ❤️, \uD83E\uDD5B y \uD83D\uDC39 en 2017-2021."
 }

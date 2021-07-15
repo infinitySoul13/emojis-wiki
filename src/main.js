@@ -3,6 +3,7 @@ import App from './App.vue'
 
 Vue.config.productionTip = false;
 
+import '@/assets/style.css'
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '@/assets/tailwind1.css'

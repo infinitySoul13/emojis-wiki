@@ -11127,6 +11127,10 @@
   "copy_text": "Copiato",
   "textarea_placeholder": "Seleziona emoji e copia",
   "page_name": "Tastiera emoji",
-  "search_notes": "Inizia a scrivere il nome dell'emoji"
+  "search_notes": "Inizia a scrivere il nome dell'emoji",
+  "search_notes": "Commencez à écrire le nom de l'emoji",
+  "accordions": ["Piattaforme", "Emoji Versione", "Di più"],
+  "accordion3": ["Aiuto", "Informativa sulla privacy", "Marchi", "Informazioni sul progetto"],
+  "footer_text": "Fatto con ❤️, \uD83E\uDD5B e \uD83D\uDC39 in 2017-2021."
 
 }

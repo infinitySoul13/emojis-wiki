@@ -11129,6 +11129,8 @@
   "copy_text": "Kopiert",
   "textarea_placeholder": "Emoji auswählen und kopieren",
   "page_name": "Emoji-Tastatur",
-  "search_notes": "Beginne den Namen des Emojis zu schreiben"
-
+  "search_notes": "Beginne den Namen des Emojis zu schreiben",
+  "accordions": ["Plattformen ", "Emoji Version ", "Mehr "],
+  "accordion3": ["Hilfe","Datenschutzrichtlinie","Markenzeichen","Über"],
+  "footer_text": "Mit ❤️, \uD83E\uDD5B und \uD83D\uDC39 in 2017-2021 gemacht."
 }

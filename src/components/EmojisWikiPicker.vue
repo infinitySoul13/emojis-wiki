@@ -15,8 +15,8 @@
                           style="font-size: 24px;"
                           ref="emojis_textarea"
                 ></textarea>
-                <div style="width: 24px; height: 24px; border-radius: 50%;"
-                     class="tw-absolute tw-bg-grey-20 p-1 tw-right-2  tw-top-2 sm:tw-right-0 md:tw-right-2 sm:tw--top-0.5 tw-cursor-pointer"
+                <div style="width: 24px; height: 24px; border-radius: 50%; padding: 7px"
+                     class="tw-absolute tw-bg-grey-20 tw-right-2  tw-top-2 sm:tw-right-0 md:tw-right-2 sm:tw--top-0.5 tw-cursor-pointer"
                      @click="text=''"
                      v-if="text.trim() != ''"
                 >
@@ -27,12 +27,13 @@
         <div class="row w-100 m-auto align-items-center justify-content-center"  style="height: 15vh;">
             <div class="col-6 px-md-0">
                 <div class="tw-w-11 ml-2 tw-py-2.5 tw-relative z-1">
-                    <div class="row tw-absolute tw-bg-white tw-border tw-border-grey-30 tw--top-11 tw-left-3 -z-1 pt-10 text-center"
+                    <div class="row tw-absolute tw-bg-white tw-border tw-border-grey-30 tw-left-3 -z-1 pt-10 text-center"
                          :class="`tw-transform ${hovered ? '' : 'tw-pointer-events-none tw--translate-y-3 tw-hidden'} tw-transition tw-duration-300`"
-                         style="width: 242px; height: 44px; border-radius: 4px"
+                         style="width: 242px; height: 44px; border-radius: 4px; top: -44px"
                     >
                             <div v-for="(emj, index) in 6" :key="emj" @click="setVariation(index - 1)"
-                                 class=" tw-relative tw-flex tw-w-10 tw-h-full p-2 tw-transition tw-pointer-events-auto tw-duration-200 tw-cursor-pointer emojis-wiki-emojipicker__pickvariation"
+                                 class="tw-relative tw-flex tw-h-full p-2 tw-transition tw-pointer-events-auto tw-duration-200 tw-cursor-pointer emojis-wiki-emojipicker__pickvariation"
+                                 style="width: 40px"
                             >
                                 <div style="width: 12px; height: 12px; border-radius: 50%; top: 37%; left: 37%;"
                                      :class="`tw-absolute tw-hover:tw-ring tw-hover:tw-ring-3 tw-hover:tw-border-primary-50 tw-bg-skin-${emj - 1} ${ variation==(index - 1) ? 'tw-ring tw-ring-3 tw-ring-grey-0' : ''}`"
@@ -49,12 +50,12 @@
             </div>
             <div class="col-6 px-sm-0 tw-relative">
                 <p style="font-size: 12px; font-weight: 400"
-                   class="mb-1 tw-text-primary-100 tw-text-right text-truncate tw-absolute px-sm-0 px-md-2 tw-right-2 tw--top-4 sm:tw--top-4"
+                   class="mb-1 tw-text-primary-100 tw-text-right text-truncate tw-absolute px-sm-0 px-md-2 tw-right-2 tw--top-4 sm:tw--top-6"
                    v-if="selected!=null"
                 >
                     {{selected.name}}
                 </p>
-                <button class="btn btn-primary btn-copy" style="float: right; width: 117px; height: 44px" @click="copyToBuffer">{{copy_btn}}</button>
+                <button class="btn btn-primary btn-copy" style="float: right; width: 117px; height: 44px; font-size: 16px !important;" @click="copyToBuffer">{{copy_btn}}</button>
             </div>
         </div>
         <div class="row w-100 m-auto align-items-center justify-content-center" style="height: 50vh;">
@@ -81,7 +82,7 @@
                         </div>
                         <div class="tw-w-full tw-border-b-2 tw-border-grey-30 tw-absolute tw-left-0 tw-bottom-0"></div>
                     </div>
-                    <div class="tw-h-full tw-w-full tw-flex tw-flex-col tw-overflow-y-hidden tw-bg-grey-20 pb-2" style="height: calc(50vh - 50px);border-radius: 8px;">
+                    <div class="tw-h-full tw-w-full tw-flex tw-flex-col tw-overflow-y-hidden tw-bg-grey-20 pb-2" style="height: calc(50vh - 50px);border-radius: 8px; overscroll-behavior: contain ;">
                         <div id="emojis-wiki" class="tw-overflow-auto tw-relative tw-h-full tw-w-full pb-2">
                             <div v-if="search_tab">
                                 <div class="px-3 py-2">
@@ -89,11 +90,11 @@
                                         <input v-model="search"
                                                @input="runSearch"
                                                class="w-100 tw-outline-none tw-text-sm py-2 px-3 tw-rounded w-ring tw-ring-4 tw-ring-grey-10"
-                                               style="font-size: 16px"
+                                               style="font-size: 16px;line-height: 147%;"
                                                :placeholder="search_text"
                                         />
-                                        <div style="width: 24px; height: 24px; border-radius: 50%;"
-                                             class="tw-absolute tw-bg-grey-20 p-1 tw-right-1.5 tw-top-1.5 tw-cursor-pointer"
+                                        <div style="width: 24px; height: 24px; border-radius: 50%;padding: 7px;"
+                                             class="tw-absolute tw-bg-grey-20 tw-right-1.5 tw-top-1.5 tw-cursor-pointer"
                                              @click="search=''"
                                              v-if="search.trim() !== ''"
                                         >
@@ -429,18 +430,24 @@
     .emoji {
         height: 44px;
         width: 44px;
-        font-size: 2.4rem;
+        /*font-size: 2.4rem;*/
+        font-size: 38.4px;
     }
     .copy-close-btn {
-        width:1.256rem;
+        /*width:1.256rem;*/
+        width:20.096px;
         height:auto;
-        -webkit-transform:translateY(-.1rem);
-        -ms-transform:translateY(-.1rem);
-        transform:translateY(-.1rem)
+        /*-webkit-transform:translateY(-.1rem);*/
+        /*-ms-transform:translateY(-.1rem);*/
+        /*transform:translateY(-.1rem);*/
+        -webkit-transform:translateY(-1.6px);
+        -ms-transform:translateY(-1.6px);
+        transform:translateY(-1.6px);
     }
     .snackbar-container p {
         font-weight:700!important;
-        font-size:1rem!important;
+        /*font-size:1rem!important;*/
+        font-size:16px!important;
         /*line-height:147%!important;*/
         color:#427951!important
     }
@@ -449,7 +456,8 @@
             /*font-size:1.8rem!important*/
         }
         .snackbar-container {
-            border-radius:.4rem!important;
+            /*border-radius:.4rem!important;*/
+            border-radius:6.4px !important;
             /*padding:1.5rem 2rem!important;*/
             /*left:2rem!important;*/
             /*max-width:calc(100% - 8rem)*/
@@ -474,7 +482,8 @@
         top: -100px;
         opacity: 0;
         z-index: 9999;
-        border-radius:.8rem!important;
+        /*border-radius:.8rem!important;*/
+        border-radius: 12.8px !important;
         /*padding:1.8rem 2.2rem 1.5rem!important;*/
     }
     .snackbar-container .action {
@@ -530,7 +539,8 @@
         .emoji {
             height: 28px;
             width: 28px;
-            font-size: 1.5rem;
+            /*font-size: 1.5rem;*/
+            font-size: 24px;
         }
     }
 
@@ -553,7 +563,9 @@
     }
     .snackbar-container.show {
        visibility: visible !important;
-        bottom: auto !important;  top:10px !important;  opacity:1 !important;
+        bottom: auto !important;
+        top:10px !important;
+        opacity:1 !important;
     }
 
     .emojis-wiki {

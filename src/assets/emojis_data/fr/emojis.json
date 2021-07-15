@@ -11128,5 +11128,8 @@
   "copy_text": "Copié",
   "textarea_placeholder": "Sélectionnez emoji et copiez",
   "page_name": "Clavier Emoji",
-  "search_notes": "Commencez à écrire le nom de l'emoji"
+  "search_notes": "Commencez à écrire le nom de l'emoji",
+  "accordions": ["Plates-formes", "Version émoji ", "Pour plus d'informations"],
+  "accordion3": ["Aide","Politique de confidentialité","Marque déposée","À propos de"],
+  "footer_text": "Fait avec ❤️, 🥛 et 🐹 en 2017-2021."
 }

@@ -11128,5 +11128,9 @@
   "copy_text": "Copied",
   "textarea_placeholder": "Select emoji and copy",
   "page_name": "Emoji Keyboard",
-  "search_notes": "Start writing the name of the emoji"
+  "search_notes": "Start writing the name of the emoji",
+  "accordions": ["Platforms", "Emoji Versions", "More"],
+  "accordion3": ["Help", "Privacy Policy", "Trademarks", "About"],
+  "footer_text": "Made with ❤️, \uD83E\uDD5B and \uD83D\uDC39 in 2017-2021."
+
 }
