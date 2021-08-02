@@ -1,0 +1,143 @@
+/******/
+
+// webpackBootstrap
+
+// install a JSONP callback for chunk loading
+
+// add entry modules from loaded chunk to deferred list
+
+// run deferred modules when all chunks ready
+
+// The module cache
+
+// object to store loaded and loading chunks
+
+// undefined = chunk not loaded, null = chunk preloaded/prefetched
+
+// Promise = chunk loading, 0 = chunk loaded
+
+// The require function
+
+// Check if module is in cache
+
+// Create a new module (and put it into the cache)
+
+// Execute the module function
+
+// Return the exports of the module
+
+// Flag the module as loaded
+
+// expose the modules object (__webpack_modules__)
+
+// expose the module cache
+
+// define getter function for harmony exports
+
+// define __esModule on exports
+
+// create a fake namespace object
+
+// mode & 1: value is a module id, require it
+
+// mode & 2: merge all properties of value into the ns
+
+// mode & 4: return value when already ns object
+
+// mode & 8|1: behave like require
+
+// getDefaultExport function for compatibility with non-harmony modules
+
+// Object.prototype.hasOwnProperty.call
+
+// __webpack_public_path__
+
+// add entry module to deferred list
+
+// run deferred modules when ready
+
+/************************************************************************/
+
+/***/
+
+// extracted by mini-css-extract-plugin
+
+// ESM COMPAT FLAG
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.iterator.js
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.promise.js
+
+// ...this.categories.map(cat => this[`$${cat}`] = []),
+
+// minMatchCharLength: 1,
+
+// this.copy_text = data.copy_text;
+
+// this.categories = {...this.categories.map(cat => this[`$${cat}`] = [])}
+
+// onSearch () {
+
+//     this.categories.forEach(category => {
+
+//         const index = this.emojis.categories.findIndex(cat => cat === category);
+
+//         if (index >= 0) {
+
+//             this.$data[category] = this.emojis.list.filter(emoji => this.search ? emoji.category === index && emoji.name.includes(this.search) : emoji.category === index)
+
+//             this.$nextTick(() => {
+
+//                 this.eachCategoriesHTML();
+
+//                 this.createScrollEvent();
+
+//             })
+
+//         }
+
+//     })
+
+// },
+
+//Methods 2
+
+// let cursorPosition = textarea.selectionStart;
+
+// value = (value.variations && this.variation >= 0) ? value.variations[this.variation] : value.emoji;
+
+// let output = [this.text.slice(0, cursorPosition), value, this.text.slice(cursorPosition)].join('');
+
+// this.text = output;
+
+// this.$nextTick(() => textarea.setSelectionRange(cursorPosition+value.length, cursorPosition+value.length));
+
+//Methods 1
+
+/*#__PURE__*/
+
+/* harmony default export */
+
+// window.locale = document.documentElement.lang;
+
+// let lang = window.locale;
+
+// if(!lang) {
+
+//     lang = 'en'
+
+// }
+
+// CONCATENATED MODULE: ./src/main.js
+
+// import '@/assets/style.css'
+
+// import 'bootstrap'
+
+// import 'bootstrap/dist/css/bootstrap.min.css'
+
+// import '@/assets/tailwind1.css'
+
+// with options
+
+/* harmony import */

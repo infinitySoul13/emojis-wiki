@@ -3,7 +3,7 @@
         <div id="snack" class="snackbar-container snackbar-pos top-center" :class="` ${snack ? 'show' : 'hide'}`">
             <p style="margin: 0px; padding: 0px; font-size: 14px; font-weight: 700; line-height: 1.6em;">{{copy_text}}</p>
             <button class="action" style="color: rgb(66, 121, 81);" @click="closeSnackbar">
-                <img src="\icons\close_2.svg" alt="Dismiss" class="copy-close-btn">
+                <img v-lazy="'/icons/close_2.svg'" alt="Dismiss" class="copy-close-btn">
             </button>
         </div>
         <div class="row w-100 m-auto align-items-center justify-content-center" style="height: 15vh;">
@@ -16,11 +16,11 @@
                           ref="emojis_textarea"
                 ></textarea>
                 <div style="width: 24px; height: 24px; border-radius: 50%; padding: 7px"
-                     class="tw-absolute tw-bg-grey-20 tw-right-2  tw-top-2 sm:tw-right-0 md:tw-right-2 sm:tw--top-0.5 tw-cursor-pointer"
+                     class="tw-absolute tw-bg-grey-20 tw-right-2 tw-top-2 sm:tw-right-0 md:tw-right-2 sm:tw--top-0.5 tw-cursor-pointer"
                      @click="text=''"
                      v-if="text.trim() != ''"
                 >
-                    <img class="tw-w-4 p-1" src="\icons\cancel.svg" alt="">
+                    <img class="tw-w-4" v-lazy="'/icons/cancel.svg'" alt="">
                 </div>
             </div>
         </div>
@@ -50,7 +50,7 @@
             </div>
             <div class="col-6 px-sm-0 tw-relative">
                 <p style="font-size: 12px; font-weight: 400"
-                   class="mb-1 tw-text-primary-100 tw-text-right text-truncate tw-absolute px-sm-0 px-md-2 tw-right-2 tw--top-4 sm:tw--top-6"
+                   class="mb-1 tw-text-primary-100 tw-text-right text-truncate tw-absolute px-sm-0 px-md-2 tw-right-2 tw--top-6 sm:tw--top-5 md:tw--top-8"
                    v-if="selected!=null"
                 >
                     {{selected.name}}
@@ -62,7 +62,7 @@
             <div class="col-12 h-100 px-0 px-sm-0">
                 <div class="emojis-wiki__container tw-bg-grey-20 " style="border-radius: 8px;">
                     <div class="emojis-wiki-emojipicker__tabs tw-overflow-x-hidden tw-relative px-2 mb-2 tw-uppercase tw-text-grey-50 tw-h-auto tw-flex">
-                        <span class="px-2 tw-py-3.5 tw-transition tw-duration-200 z-1"
+                        <span class="px-2 tw-py-3.5 tw-transition tw-duration-200 z-1 noselect"
                               :class="{ 'tw-text-primary-100 tw-border-b-2 tw-border-primary-50': search_tab === true }"
                               @click="search_tab = true"
                               style="font-size: 12px"
@@ -72,7 +72,7 @@
                         <div class="tw-overflow-x-auto tw-flex emojis-wiki-scrollbar-hidden w-100 m-auto justify-content-between">
                             <span v-for="(category, c) in categories"
                                   :key="c" :class="{ 'tw-text-primary-100 tw-border-b-2 tw-border-primary-50': c === active&&!search_tab }"
-                                  class="tw-flex tw-flex-none px-2 tw-py-3.5 tw-transition tw-duration-300 z-1"
+                                  class="tw-flex tw-flex-none px-2 tw-py-3.5 tw-transition tw-duration-300 z-1 noselect"
                                   style="font-size: 12px"
                                   :id="'category'+c"
                                   @click="goToCategory(c)"
@@ -82,7 +82,8 @@
                         </div>
                         <div class="tw-w-full tw-border-b-2 tw-border-grey-30 tw-absolute tw-left-0 tw-bottom-0"></div>
                     </div>
-                    <div class="tw-h-full tw-w-full tw-flex tw-flex-col tw-overflow-y-hidden tw-bg-grey-20 pb-2" style="height: calc(50vh - 50px);border-radius: 8px; overscroll-behavior: contain ;">
+                    <div class="tw-h-full tw-w-full tw-flex tw-flex-col tw-overflow-y-hidden tw-bg-grey-20 pb-2" style="height: calc(50vh - 50px);border-radius: 8px;">
+<!--                        overscroll-behavior: contain ;-->
                         <div id="emojis-wiki" class="tw-overflow-auto tw-relative tw-h-full tw-w-full pb-2">
                             <div v-if="search_tab">
                                 <div class="px-3 py-2">
@@ -98,7 +99,7 @@
                                              @click="search=''"
                                              v-if="search.trim() !== ''"
                                         >
-                                            <img class="tw-w-4 p-1" src="\icons\cancel.svg" alt="">
+                                            <img class="tw-w-4" v-lazy="'/icons/cancel.svg'" alt="">
                                         </div>
                                         <p style="font-size: 12px; font-weight: 400"
                                            class="mt-3 mb-1 p-0 tw-text-grey-50 tw-text-left text-truncate"
@@ -345,7 +346,7 @@
                 const index = this.offsetTop.findIndex(o => o === item);
                 if (index >= 0) {
                     this.active = index;
-                    document.getElementById('category'+index).scrollIntoView();
+                    document.getElementById('category'+index).scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
                 }
             },
             setVariation (index) {
@@ -358,7 +359,7 @@
                     const container_emojis = document.getElementById('emojis-wiki');
                     const categories = document.querySelectorAll('.emojis-wiki__observer');
                     container_emojis.scrollTop = categories[index].offsetTop;
-                    document.getElementById('category'+index).scrollIntoView();
+                    document.getElementById('category'+index).scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
                     // this.active = index
                 })
 
@@ -404,6 +405,15 @@
 </script>
 
 <style scoped>
+    .noselect {
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+    }
     .emojis-wiki-textarea::placeholder {
         opacity: 1 !important;
         color:#606D9B !important;
