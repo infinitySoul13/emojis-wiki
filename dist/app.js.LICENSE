@@ -60,6 +60,8 @@
 
 /***/
 
+/* harmony import */
+
 // extracted by mini-css-extract-plugin
 
 // ESM COMPAT FLAG
@@ -139,5 +141,3 @@
 // import '@/assets/tailwind1.css'
 
 // with options
-
-/* harmony import */

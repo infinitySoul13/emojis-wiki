@@ -22,14 +22,14 @@
                                         <input class="search__field" :placeholder="search_text" name="s">
                                         <input type="hidden" value="1" name="sentence">
                                         <button aria-label="Favorite" class="search-button-wrap">
-                                            <img class="search-button" v-lazy="'/icons/search_blue_2.svg'" alt="menu">
+                                            <img class="search-button" v-lazy="'./icons/search_blue_2.svg'" alt="menu">
                                         </button>
                                     </label>
                                 </form>
                                 <button class="navbar-toggler p-1 lang-btn emojis-wiki-nav-btn" title="English"
                                         id="dropdownMenu2" data-bs-toggle="dropdown">
                                     <span class="sr-only">language</span>
-                                    <img v-lazy="'/icons/lang-icon.png'" alt="English" class="ezlazyloaded">
+                                    <img v-lazy="'./icons/lang-icon.png'" alt="English" class="ezlazyloaded">
                                 </button>
                                 <ul class="tw-border-none tw-absolute mt-2 dropdown-menu mx-auto mx-sm-0 tw-w-11/12 tw-right-0 tw-left-0 sm:tw-w-80 sm:tw-right-auto sm:tw-left-auto tw-rounded-md tw-shadow-lg tw-bg-white"
                                     aria-labelledby="dropdownMenu2"
@@ -82,7 +82,7 @@
                                         id="dropdownMenu1" data-bs-toggle="dropdown"
                                 >
                                     <span class="sr-only">menu</span>
-                                    <img v-lazy="'/icons/hamburger.svg'" class="hamburger mx-auto" alt="menu">
+                                    <img v-lazy="'./icons/hamburger.svg'" class="hamburger mx-auto" alt="menu">
                                 </button>
                                 <div class="text-center tw-border-none tw-absolute mt-2 dropdown-menu mx-auto mx-sm-0 tw-w-11/12 tw-right-0 tw-left-0 sm:tw-w-80 sm:tw-right-auto sm:tw-left-auto tw-rounded-md tw-shadow-lg tw-bg-white"
                                      aria-labelledby="dropdownMenu1"
@@ -110,7 +110,7 @@
                         <input class="search__field" :placeholder="search_text" name="s">
                         <input type="hidden" value="1" name="sentence">
                         <button aria-label="Favorite" class="search-button-wrap">
-                            <img class="search-button" v-lazy="'/icons/search_blue_2.svg'" alt="menu">
+                            <img class="search-button" v-lazy="'./icons/search_blue_2.svg'" alt="menu">
                         </button>
                     </label>
                 </form>
@@ -157,28 +157,28 @@
                                  class="close" alt="close">
                         </button>
                         <ul class="accordion-collapse collapse md:tw-block" id="collapseOne">
-                            <li><a class="link-dark-bg" href="https://emojis.wiki/apple/">Apple</a></li>
-                            <li><a class="link-dark-bg" href="https://emojis.wiki/google/">Google</a></li>
-                            <li><a class="link-dark-bg" href="https://emojis.wiki/microsoft/">Microsoft</a></li>
-                            <li><a class="link-dark-bg" href="https://emojis.wiki/facebook/">Facebook</a></li>
-                            <li><a class="link-dark-bg" href="https://emojis.wiki/messenger/">Messenger</a></li>
-                            <li><a class="link-dark-bg" href="https://emojis.wiki/twitter/">Twitter</a></li>
-                            <li><a class="link-dark-bg" href="https://emojis.wiki/whatsapp/">WhatsApp</a></li>
-                            <li><a class="link-dark-bg" href="https://emojis.wiki/samsung/">Samsung</a></li>
-                            <li><a class="link-dark-bg" href="https://emojis.wiki/lg/">LG</a></li>
-                            <li><a class="link-dark-bg" href="https://emojis.wiki/htc/">HTC</a></li>
-                            <li><a class="link-dark-bg" href="https://emojis.wiki/mozilla/">Mozilla</a></li>
-                            <li><a class="link-dark-bg" href="https://emojis.wiki/softbank/">SoftBank</a></li>
-                            <li><a class="link-dark-bg" href="https://emojis.wiki/au-by-kddi/">au by KDDI</a></li>
-                            <li><a class="link-dark-bg" href="https://emojis.wiki/docomo/">Docomo</a></li>
-                            <li><a class="link-dark-bg" href="https://emojis.wiki/openmoji/">Openmoji</a></li>
-                            <li><a class="link-dark-bg" href="https://emojis.wiki/youtube/">Youtube</a></li>
-                            <li><a class="link-dark-bg" href="https://emojis.wiki/telegram/">Telegram</a></li>
-                            <li><a class="link-dark-bg" href="https://emojis.wiki/skype/">Skype</a></li>
-                            <li><a class="link-dark-bg" href="https://emojis.wiki/discord/">Discord</a></li>
-                            <li><a class="link-dark-bg" href="https://emojis.wiki/tiktok/">TikTok</a></li>
-                            <li><a class="link-dark-bg" href="https://emojis.wiki/reddit/">Reddit</a></li>
-                            <li><a class="link-dark-bg" href="https://emojis.wiki/animoji/">Animoji</a></li>
+                            <li><a class="link-dark-bg"  :href="'/'+search_path+'apple/'">Apple</a></li>
+                            <li><a class="link-dark-bg" :href="'/'+search_path+'google/'">Google</a></li>
+                            <li><a class="link-dark-bg"  :href="'/'+search_path+'microsoft/'">Microsoft</a></li>
+                            <li><a class="link-dark-bg"  :href="'/'+search_path+'facebook/'">Facebook</a></li>
+                            <li><a class="link-dark-bg"  :href="'/'+search_path+'messenger/'">Messenger</a></li>
+                            <li><a class="link-dark-bg"  :href="'/'+search_path+'twitter/'">Twitter</a></li>
+                            <li><a class="link-dark-bg"  :href="'/'+search_path+'whatsapp/'">WhatsApp</a></li>
+                            <li><a class="link-dark-bg"  :href="'/'+search_path+'samsung/'">Samsung</a></li>
+                            <li><a class="link-dark-bg"  :href="'/'+search_path+'lg/'">LG</a></li>
+                            <li><a class="link-dark-bg"  :href="'/'+search_path+'htc/'">HTC</a></li>
+                            <li><a class="link-dark-bg"  :href="'/'+search_path+'mozilla/'">Mozilla</a></li>
+                            <li><a class="link-dark-bg"  :href="'/'+search_path+'softbank/'">SoftBank</a></li>
+                            <li><a class="link-dark-bg"  :href="'/'+search_path+'au-by-kddi/'">au by KDDI</a></li>
+                            <li><a class="link-dark-bg"  :href="'/'+search_path+'docomo/'">Docomo</a></li>
+                            <li><a class="link-dark-bg"  :href="'/'+search_path+'openmoji/'">Openmoji</a></li>
+                            <li><a class="link-dark-bg"  :href="'/'+search_path+'youtube/'">Youtube</a></li>
+                            <li><a class="link-dark-bg"  :href="'/'+search_path+'telegram/'">Telegram</a></li>
+                            <li><a class="link-dark-bg"  :href="'/'+search_path+'skype/'">Skype</a></li>
+                            <li><a class="link-dark-bg"  :href="'/'+search_path+'discord/'">Discord</a></li>
+                            <li><a class="link-dark-bg"  :href="'/'+search_path+'tiktok/'">TikTok</a></li>
+                            <li><a class="link-dark-bg"  :href="'/'+search_path+'reddit/'">Reddit</a></li>
+                            <li><a class="link-dark-bg"  :href="'/'+search_path+'animoji/'">Animoji</a></li>
                         </ul>
                     </div>
                     <div class="accordion-item">
@@ -216,8 +216,8 @@
                     <div class="accordion-item">
                         <button class="accordion-item__title collapsed" data-bs-toggle="collapse"
                                 data-bs-target="#collapseThree">
-                            {{accordions[2]}} <img
-                                v-lazy="'https://cdn-0.emojis.wiki/wp-content/themes/emoji-v4/images/arrow.svg'"
+                            {{accordions[2]}}
+                            <img v-lazy="'https://cdn-0.emojis.wiki/wp-content/themes/emoji-v4/images/arrow.svg'"
                                 class="arrow" alt="open">
                             <img v-lazy="'https://cdn-0.emojis.wiki/wp-content/themes/emoji-v4/images/close.svg'"
                                  class="close" alt="close">
@@ -245,15 +245,15 @@
                         <div class="footer-legal">
                             <a href="https://www.facebook.com/emojiswiki/" rel="noreferrer" target="_blank">
                                 <img v-lazy="'https://cdn-0.emojis.wiki/wp-content/themes/emoji-v4/images/facebook.svg'"
-                                     alt="facebook">
+                                     alt="fb">
                             </a>
                             <a href="https://twitter.com/emojiswiki/" rel="noreferrer" target="_blank">
                                 <img v-lazy="'https://cdn-0.emojis.wiki/wp-content/themes/emoji-v4/images/twitter.svg'"
-                                     alt="twitter">
+                                     alt="tw">
                             </a>
                             <a href="https://www.pinterest.com/emojiswiki/" rel="noreferrer" target="_blank">
                                 <img v-lazy="'https://cdn-0.emojis.wiki/wp-content/themes/emoji-v4/images/pinterest.svg'"
-                                     alt="pinterest">
+                                     alt="p">
                             </a>
                             <div class="moon">🌚</div>
                         </div>

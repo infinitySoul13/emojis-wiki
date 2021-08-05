@@ -3,7 +3,7 @@
         <div id="snack" class="snackbar-container snackbar-pos top-center" :class="` ${snack ? 'show' : 'hide'}`">
             <p style="margin: 0px; padding: 0px; font-size: 14px; font-weight: 700; line-height: 1.6em;">{{copy_text}}</p>
             <button class="action" style="color: rgb(66, 121, 81);" @click="closeSnackbar">
-                <img v-lazy="'/icons/close_2.svg'" alt="Dismiss" class="copy-close-btn">
+                <img v-lazy="'./icons/close_2.svg'" alt="Dismiss" class="copy-close-btn">
             </button>
         </div>
         <div class="row w-100 m-auto align-items-center justify-content-center" style="height: 15vh;">
@@ -20,7 +20,7 @@
                      @click="text=''"
                      v-if="text.trim() != ''"
                 >
-                    <img class="tw-w-4" v-lazy="'/icons/cancel.svg'" alt="">
+                    <img class="tw-w-4" v-lazy="'./icons/cancel.svg'" alt="">
                 </div>
             </div>
         </div>
@@ -99,7 +99,7 @@
                                              @click="search=''"
                                              v-if="search.trim() !== ''"
                                         >
-                                            <img class="tw-w-4" v-lazy="'/icons/cancel.svg'" alt="">
+                                            <img class="tw-w-4" v-lazy="'./icons/cancel.svg'" alt="">
                                         </div>
                                         <p style="font-size: 12px; font-weight: 400"
                                            class="mt-3 mb-1 p-0 tw-text-grey-50 tw-text-left text-truncate"

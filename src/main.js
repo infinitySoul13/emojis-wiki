@@ -15,8 +15,8 @@ import VueLazyload from 'vue-lazyload'
 // with options
 Vue.use(VueLazyload, {
   preLoad: 5,
-  error: '/icons/three-dots.svg',
-  loading: '/icons/three-dots.svg',
+  error: './icons/three-dots.svg',
+  loading: './icons/three-dots.svg',
   attempt: 1
 })
 
